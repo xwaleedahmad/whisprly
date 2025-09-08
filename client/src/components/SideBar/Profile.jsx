@@ -90,7 +90,7 @@ const Profile = () => {
       <dialog id="friendRequests" className="modal ">
         <div className="modal-box absolute py-6 px-4 top-24 xl:relative xl:top-0  bg-primary w-full xl:w-[400px] xl:max-w-[500px]  rounded-xl shadow-lg p-3">
           <form method="dialog">
-            <button className="btn btn-md text-xl btn-circle hover:bg-quaternary text-gray-400 btn-ghost absolute right-2 top-2">
+            <button className="btn btn-sm text-base btn-circle hover:bg-quaternary text-gray-400 btn-ghost absolute right-2 top-2">
               ✕
             </button>
           </form>

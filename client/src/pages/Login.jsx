@@ -1,7 +1,7 @@
 import { IoKey } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+// import { useState,useEffect, useRef } from "react";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,15 +9,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Logo from "../components/Logo";
 import useLogin from "../hooks/useLogin";
 import loginSchema from "../lib/loginSchema";
-import useSendEmail from "../hooks/useSendEmail";
-import {verificationEmailSchema} from "../lib/resetPasswordSchema"
+// import useSendEmail from "../hooks/useSendEmail";
+// import {verificationEmailSchema} from "../lib/resetPasswordSchema"
 
 const Login = () => {
-
-  const {login} = useLogin()
-  const {sendEmail} = useSendEmail()
-  const [showResetDialog, setShowResetDialog] = useState(false);
-  const dialogRef = useRef(null);
+  const { login } = useLogin();
+  // const {sendEmail} = useSendEmail()
+  // const [showResetDialog, setShowResetDialog] = useState(false);
+  // const dialogRef = useRef(null);
 
   const {
     register,
@@ -25,33 +24,33 @@ const Login = () => {
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(loginSchema) });
 
-  const {
-    register : registerEmail,
-    handleSubmit : handleEmailSubmit,
-    reset,
-    formState : {errors:emailErrors,isSubmitting:isEmailSubmitting}
-  }  = useForm({resolver:zodResolver(verificationEmailSchema)})
+  // const {
+  //   register : registerEmail,
+  //   handleSubmit : handleEmailSubmit,
+  //   reset,
+  //   formState : {errors:emailErrors,isSubmitting:isEmailSubmitting}
+  // }  = useForm({resolver:zodResolver(verificationEmailSchema)})
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dialogRef.current && !dialogRef.current.contains(event.target)) {
-        setShowResetDialog(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (dialogRef.current && !dialogRef.current.contains(event.target)) {
+  //       setShowResetDialog(false);
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, []);
 
-  const onSubmit = async(data) => {
-   await login(data)
-  }
+  const onSubmit = async (data) => {
+    await login(data);
+  };
 
-  const onEmailSubmit = async(data)=>{
-    await sendEmail(data)
-    reset()
-    setShowResetDialog(false)
-  }
+  // const onEmailSubmit = async(data)=>{
+  //   await sendEmail(data)
+  //   reset()
+  //   setShowResetDialog(false)
+  // }
 
   return (
     <>
@@ -63,14 +62,23 @@ const Login = () => {
               Login
             </h1>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="w-72 flex flex-col gap-3 mt-6" >
-
-              <label htmlFor="email" className="input input-bordered input-field-styles  flex items-center gap-2">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="w-72 flex flex-col gap-3 mt-6"
+            >
+              <label
+                htmlFor="email"
+                className="input input-bordered input-field-styles  flex items-center gap-2"
+              >
                 <MdEmail />
                 <input
                   {...register("email")}
                   type="text"
-                  onChange={(e) => e.target.value = e.target.value.toLowerCase().replace(/\s/g, '')}
+                  onChange={(e) =>
+                    (e.target.value = e.target.value
+                      .toLowerCase()
+                      .replace(/\s/g, ""))
+                  }
                   id="email"
                   className="auth-btn "
                   placeholder="Email"
@@ -91,18 +99,23 @@ const Login = () => {
               {errors.password && (
                 <p className="error-msg">{errors.password.message}</p>
               )}
-            <button
-            disabled={isSubmitting}
-            type="submit"
-            className="text-white w-72 mt-2 bg-gradient-to-r from-[#863ffa] to-[#3ec0fc] hover:bg-gradient-to-br focus:ring-2 focus:outline-none focus:ring-purple-800 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            >
-              {isSubmitting ? <span className="loading loading-spinner"></span> : "Login"}
-            </button>
-
-              </form>
+              <button
+                disabled={isSubmitting}
+                type="submit"
+                className="text-white w-72 mt-2 bg-gradient-to-r from-[#863ffa] to-[#3ec0fc] hover:bg-gradient-to-br focus:ring-2 focus:outline-none focus:ring-purple-800 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+              >
+                {isSubmitting ? (
+                  <span className="loading loading-spinner"></span>
+                ) : (
+                  "Login"
+                )}
+              </button>
+            </form>
 
             <div className="flex items-center mt-2 gap-2 text-sm">
-              <p className="capitalize text-gray-400">{"Don't"} have account ?</p>
+              <p className="capitalize text-gray-400">
+                {"Don't"} have account ?
+              </p>
               <Link to="/signup" className="text-[#3e88cc] hover:underline">
                 Register
               </Link>
@@ -112,7 +125,7 @@ const Login = () => {
       </div>
 
       {/* Password Reset Dialog */}
-      <div className="fixed bottom-5 right-4">
+      {/* <div className="fixed bottom-5 right-4">
         <div className="relative">
           {showResetDialog && (
             <div 
@@ -173,7 +186,7 @@ const Login = () => {
             </svg>
           </button>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

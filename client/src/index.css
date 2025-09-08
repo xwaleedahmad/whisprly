@@ -7,7 +7,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #0e0918; /* Dark background color that matches your theme */
-  background-image: url("/background-swirl.jpg");
+  background-image: url("/background-swirl.webp");
   background-repeat: no-repeat;
   background-size: cover;
   transition: background-image 0.3s ease-in;

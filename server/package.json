@@ -1,5 +1,5 @@
 {
-  "name": "Whisprly-Server",
+  "name": "whisprly-server",
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
