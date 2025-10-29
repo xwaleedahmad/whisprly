@@ -69,7 +69,7 @@ const SignUp = () => {
                {...register("gender")}
                value={selectedGender}
                onChange={handleSelectGender}
-               className={`select px-2 bg-quaternary  capitalize text-base focus:outline-none focus:ring-0 focus:border-0 w-full max-w-xs ${selectedGender === "male" || selectedGender === "female" ? 'auth-btn' : ''}`}
+               className={`select px-2 !bg-[rgba(29,35,42,0.0)]  capitalize text-base focus:outline-none focus:ring-0 focus:border-0 w-full max-w-xs ${selectedGender === "male" || selectedGender === "female" ? 'auth-btn' : ''}`}
               >
              <option className="input-field-styles" value="" disabled>Gender</option>
              <option className="input-field-styles" value="male">male</option>

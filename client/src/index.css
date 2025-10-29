@@ -135,8 +135,12 @@ textarea::spelling-error {
   box-shadow: none;
   border-color: #374151;
   outline-style: solid;
-  outline-width: 1.2px;
-  outline-offset: 2px;
+  outline-width: 1px;
+  outline-offset: 1.5px;
   outline-color: #495057;
+}
+
+label{
+  background-color : rgba(29,35,42,0.6) !important;
 }
 
